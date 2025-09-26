@@ -1,0 +1,95 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f7f9;
+  color: #333;
+}
+h1, h2 {
+  color: #2c3e50;
+}
+.input-section {
+  margin-bottom: 20px;
+  position: relative;
+  height: 100px;
+}
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 20px;
+  padding-right: 50px;
+  padding-left: 25px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+#generate_button {
+  position: absolute;
+  /* Position from the bottom and right edges of the container */
+  bottom: 10px; /* Adjust for padding/border of textarea/container */
+  right: 10px; /* Adjust for padding/border of textarea/container */
+  /* Add button styling */
+  cursor: pointer;
+  z-index: 10; /* Ensure button is above the textarea text */
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#generate_button:disabled {
+  opacity: 0.6; 
+}
+
+button {
+  padding: 10px 15px;
+  border: 1px solid #eee;
+  background-color: #3498db;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+button:hover {
+  background-color: #2980b9;
+}
+#loading { display: none; margin-top: 10px; font-style: italic; color: #555; }
+
+#site_display {
+  overflow: hidden;
+  border-top: 1px solid #eee;
+}
+
+iframe { width: 100%; height: 600px; border: none; }
+#saved_sites { margin-top: 30px; }
+
+#sites_list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.site-item:last-child { border-bottom: none; }
+.site-item span { flex-grow: 1; }
+.site-item button { margin-left: 10px; }
+.button-group { display: flex; gap: 5px; }
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}

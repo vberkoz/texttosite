@@ -1,0 +1,19 @@
+{
+  "name": "texttosite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "generator.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build:js-css": "esbuild src/app.js --bundle --minify --sourcemap --outdir=dist --loader:.css=css --loader:.txt=text",
+    "copy-html": "cp **src/index.html** dist/index.html",
+    "build": "npm run clean && npm run build:js-css && npm run copy-html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "esbuild": "^0.25.10"
+  }
+}

@@ -1,0 +1,7 @@
+node_modules
+dist
+cdk/node_modules
+cdk/cdk.out
+api/node_modules
+src/templates
+generator-cli.js
