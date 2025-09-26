@@ -1,0 +1,37 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Roboto Mono', monospace;
+  font-size: medium;
+  background-color: #f4f4f4;
+  color: #333;
+  max-width: 64rem;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+header, footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4rem;
+}
+
+.team-members, .features {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}

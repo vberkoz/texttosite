@@ -1,102 +1,28 @@
-const baseTemplate = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{siteDescription}}">
-    <title>{{pageTitle}}</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <a href="/">{{navTitle}}</a>
-        {{navigation}}
-    </header>
+import baseTemplate from "./templates/monotype/base.html";
+import navTemplate from "./templates/monotype/nav.html";
+import navItemTemplate from "./templates/monotype/nav_item.html";
 
-    <main>
-        {{content}}
-    </main>
-
-    <footer>
-        <p>&copy; {{siteTitle}} 2024</p>
-    </footer>
-
-    <script src="script.js"><\/script>
-</body>
-</html>
-`;
-
-const navTemplate = `
-<nav>
-{{navItems}}
-</nav>
-`;
-
-const navItemTemplate = `<a href="{{navPath}}">{{navLabel}}</a>`;
+import aboutSectionTemplate from "./templates/monotype/sections/about.html";
+import callToActionTemplate from "./templates/monotype/sections/call_to_action.html";
+import contactSectionTemplate from "./templates/monotype/sections/contact.html";
+import featuresItemTemplate from "./templates/monotype/sections/features_item.html";
+import featuresTemplate from "./templates/monotype/sections/features.html";
+import heroTemplate from "./templates/monotype/sections/hero.html";
+import teamMembersItemTemplate from "./templates/monotype/sections/team_members_item.html";
+import teamMemberTemplate from "./templates/monotype/sections/team_members.html";
+import textBlockTemplate from "./templates/monotype/sections/text_block.html";
 
 const templates = {
-  hero: `<section>
-<div>
-    <h1>{{heading}}</h1>
-    <p>{{subheading}}</p>
-    <a href="{{ctaLink}}">{{ctaText}}</a>
-</div>
-</section>`,
-  features: `<section>
-<div>
-    <h3>{{title}}</h3>
-    <div class="features">
-        {{items}}
-    </div>
-</div>
-</section>`,
-  features_item: `<div>
-<span>{{icon}}</span>
-<h4>{{heading}}</h4>
-<p>{{description}}</p>
-</div>`,
-  team_members: `<section>
-<h3>{{title}}</h3>
-<div class="team-members">
-    {{members}}
-</div>
-</section>`,
-  team_members_item: `<div>
-<img src="{{image}}" alt="{{name}}">
-<h4>{{name}}</h4>
-<p>{{role}}</p>
-<p>{{bio}}</p>
-</div>`,
-  call_to_action: `<section>
-<div>
-    <h3>{{heading}}</h3>
-    <p>{{subheading}}</p>
-    <a href="{{ctaLink}}">{{ctaText}}</a>
-</div>
-</section>`,
-  text_block: `<section>
-<h3>{{title}}</h3>
-<p>{{content}}</p>
-</section>`,
-  about: `<section class="about">
-<h2>{{title}}</h2>
-<p>{{content}}</p>
-</section>`,
-  contact: `<section class="contact">
-<h2>{{title}}</h2>
-<p>{{content}}</p>
-<form>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email">
-    <label for="message">Message:</label>
-    <textarea id="message" name="message"></textarea>
-    <button type="submit">Send</button>
-</form>
-</section>`,
-  "styles.css": `
+  hero: heroTemplate,
+  features: featuresTemplate,
+  features_item: featuresItemTemplate,
+  team_members: teamMemberTemplate,
+  team_members_item: teamMembersItemTemplate,
+  text_block: textBlockTemplate,
+  about: aboutSectionTemplate,
+  call_to_action: callToActionTemplate,
+  contact: contactSectionTemplate,
+  styles: `
 body {
   display: flex;
   flex-direction: column;
@@ -133,9 +59,8 @@ main {
   display: flex;
   justify-content: space-between;
   gap: 2rem;
-}
-`,
-  "script.js": `
+}`,
+  script: `
 document.addEventListener('DOMContentLoaded', () => {
   const ctaButton = document.querySelector('.hero-content .cta-button');
 
@@ -154,8 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 1000); 
     });
   }
-});
-`,
+});`,
 };
 
 export function generateHTML(siteData) {
@@ -221,7 +145,7 @@ export function generateHTML(siteData) {
     siteFiles[page.fileName] = finalHtml;
   }
 
-  siteFiles["styles.css"] = templates["styles.css"];
-  siteFiles["script.js"] = templates["script.js"];
+  siteFiles["styles.css"] = templates["styles"];
+  siteFiles["script.js"] = templates["script"];
   return siteFiles;
 }
