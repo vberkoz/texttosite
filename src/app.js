@@ -71,7 +71,32 @@ async function handleGeneration() {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tabId = button.getAttribute('data-tab');
+
+      // 1. Remove 'active' class from all buttons
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+
+      // 2. Add 'active' class to the clicked button
+      button.classList.add('active');
+
+      // 3. Hide all tab content
+      tabContents.forEach(content => content.classList.remove('active'));
+
+      // 4. Show the content corresponding to the clicked tab
+      const activeContent = document.getElementById(tabId);
+      if (activeContent) {
+        activeContent.classList.add('active');
+      }
+    });
+  });
+  
   const promptInput = document.getElementById("prompt_input");
+  document.getElementById("current_year").textContent = new Date().getFullYear();
   
   // Initial check and setup for button disabling
   updateButtonState(); 

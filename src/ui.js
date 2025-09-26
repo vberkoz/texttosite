@@ -37,7 +37,7 @@ export async function displaySavedSites() {
     buttonGroup.className = "button-group";
 
     const viewButton = document.createElement("button");
-    viewButton.textContent = "View";
+    viewButton.textContent = 'View';
     viewButton.onclick = () => displaySite(site.data);
 
     const downloadButton = createDownloadButton(site.name, site.data);
