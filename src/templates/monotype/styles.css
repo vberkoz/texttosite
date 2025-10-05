@@ -1,37 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+/* General Resets and Base Styles */
+:root {
+  /* Define CSS variables for easier maintenance and consistency */
+  --color-primary: #333;
+  --color-secondary: #f4f4f4;
+  --color-accent: #007bff; /* Example accent color for links/buttons */
+  --font-body: 'IBM Plex Mono', monospace;
+  --max-width: 64rem;
+  --padding-base: 3rem;
+  --gap-base: 2rem;
+}
+
+/* box-sizing: border-box for easier layout management */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  font-family: 'Roboto Mono', monospace;
-  font-size: medium;
-  background-color: #f4f4f4;
-  color: #333;
-  max-width: 64rem;
-  margin: 0 auto;
-  height: 100vh;
+  /* Use min-height instead of height: 100vh to avoid content cutoff */
+  min-height: 100vh;
+  margin: 0 auto; /* Center the body content container */
+  max-width: var(--max-width);
+  
+  /* Typography and Color */
+  font: medium var(--font-body); /* Shorthand for font-size and font-family */
+  color: var(--color-primary);
+  background-color: var(--color-secondary);
+  padding: 0 1rem;
 }
 
-nav {
-  display: flex;
-  gap: 1rem;
+/* Link Styles */
+a {
+  color: var(--color-accent);
+  /* text-decoration: none; Remove underline for a cleaner look */
+  transition: color 0.3s ease;
 }
 
+a:hover {
+  color: var(--color-accent);
+}
+
+/* Header and Footer Layout */
 header, footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 3rem 0;
+  padding: var(--padding-base) 0;
 }
 
+/* Main Content Area */
 main {
+  flex-grow: 1; /* Allows main to take up available space */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 4rem;
 }
 
+/* Navigation Styles */
+nav a {
+  margin-left: var(--gap-base);
+}
+
+/* Feature/Team Sections - Grouped for efficiency */
 .team-members, .features {
   display: flex;
   justify-content: space-between;
-  gap: 2rem;
+  gap: var(--gap-base);
+  /* Allow wrapping for responsive behavior */
+  flex-wrap: wrap; 
+}
+
+/* Individual Feature Box Styles (Optimization) */
+.features > div, .team-members > div {
+  flex: 1; /* Allows each feature box to grow/shrink */
+  min-width: 250px; /* Ensures minimum size before stacking */
+}
+
+.features span {
+  font-size: 2rem; /* Larger icon size */
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --padding-base: 2rem; /* Reduce padding */
+  }
+
+  body {
+    /* Remove max-width so the content can fill the viewport (with padding) */
+    max-width: 100%; 
+  }
+
+  header, footer {
+    padding: var(--padding-base); /* Add side padding to header/footer */
+  }
+
+  /* Make header stack elements for better flow */
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header nav {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    --gap-base: 1rem; /* Further reduce gap on small screens */
+  }
+
+  main {
+    padding: 0 1rem; /* Ensure consistent side padding */
+    gap: 2rem; /* Reduce section gap */
+  }
+
+  /* Stack header elements vertically for a clean mobile header */
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  header nav {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column; /* Stack nav items */
+    gap: 0.5rem;
+  }
+
+  nav a {
+    margin-left: 0; /* Remove horizontal margin */
+  }
+  
+  /* Force feature/team sections to stack vertically */
+  .team-members, .features {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .features > div {
+    min-width: unset; /* Remove min-width to allow full width */
+  }
 }

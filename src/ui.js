@@ -24,7 +24,7 @@ export async function displaySavedSites() {
   sitesList.innerHTML = "";
   const sites = await getSites();
   if (sites.length === 0) {
-    sitesList.innerHTML = "<p>No sites saved yet.</p>";
+    sitesList.innerHTML = "<p style='text-align: center;'>No sites saved yet.</p>";
     return;
   }
 
